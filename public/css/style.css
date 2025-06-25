@@ -1,0 +1,384 @@
+:root {
+  --primary-color: #1D5D21;  /* กำหนดตัวแปร CSS */
+  --secondary-color: #EAE4D2; 
+  --third-color:#333333;
+  --primary-btn-color: #1D5D21;  
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth; /* ทำให้การเลื่อนหน้าลื่นขึ้น */
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #E9E9E9;
+    font-size: .825rem;
+  }
+  
+  /* กำหนดขนาดฟอนต์ให้ปรับตามหน้าจอ */
+  /* html {
+    font-size: 62.5%; 1rem = 10px 
+  }
+   */
+ 
+  
+  /* ลบสไตล์เริ่มต้นของลิงก์และลิสต์ */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul, ol {
+    list-style: none;
+  }
+
+/* ------------------------navbar-------------------------------------- */
+.nav_bar_status p{
+  margin-bottom: 0;
+}
+.nav_bar_status_wrap{
+  padding: 6px 12px 6px 12px;
+  font-weight: bold;
+  color:var(--primary-color);
+}
+
+.nav_bar_bg{
+  background:var(--primary-color);
+}
+.nav_bar_bg a{
+  color: #fff;
+}
+.nav_bar_bg a:hover{
+ text-decoration: underline;
+ text-underline-offset: 5px;
+ color: #fff;
+}
+.navbar-brand {
+  font-size: .825rem;
+}
+/* ------------------------navbar-------------------------------------- */
+/* --------------------------jumbotronnindex -----------------------------*/
+.bg_img{
+  background: var(--primary-color);
+}
+/* --------------------------jumbotronnindex -----------------------------*/
+
+
+
+
+
+
+
+/* ------------------------width element-------------------------------------- */
+.w-40{width: 40%;}
+/* ------------------------width element-------------------------------------- */
+
+
+
+
+/* section form */
+.form-select { font-size: 0.75rem;margin-bottom: 10px;padding: .25rem .325rem;}
+.form-control { font-size: 0.75rem;margin-bottom: 10px;padding: .25rem .325rem;}
+
+/* section form */
+.nav_bar_status{
+  background: #000;
+  font-size:0.625rem ;
+}
+
+
+/* button */
+.btn-d{
+  padding: 0px 10px;
+  width: 85px;
+  border-radius: 5px;
+}
+.btn-search{
+  padding: 2px 10px;
+  border: none;
+  background: var(--primary-btn-color);
+  color: #fff;
+}
+.btn-viewall{
+  padding: 2px 10px;
+  border: none;
+  background: var(--primary-btn-color);
+  color: #fff;
+}
+.btn-save{
+  padding: 2px 10px;
+  border: none;
+  background: var(--primary-btn-color);
+  color: #fff;
+}
+.btn-contact{
+  padding: 2px 10px;
+  border: none;
+  background: var(--primary-btn-color);
+  color: #fff;
+}
+.form-switch .form-check-input {
+  width: 3em;
+}
+.form-check-input {
+  height: 1.5em;
+}
+.form-check {
+  display: flex;
+  justify-content: flex-end;
+}
+.form-check-label {
+  margin-right: 40px;
+  display: inherit
+;
+  align-items: center;
+}
+.form-check-input:checked {
+  background-color: var(--primary-btn-color);
+    border-color: var(--primary-btn-color);
+}
+/* button */
+
+.card .row{
+  margin-left: 0;
+  margin-right: 0;
+}
+.card{margin-bottom: 10px;}
+.content-body{padding: 10px;}
+.header_menu{padding: 10px;}
+
+
+
+
+
+
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background:  var(--primary-color);
+}
+.footer a{ color: #fff;}
+.footer ul{margin: 0;}
+
+
+
+
+/* ------------------------page clubs-------------------------------------- */
+.club-content{
+  padding-top: 3rem;
+}
+.card-img{
+ 
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 30vh; 
+}
+.img-team img{
+  width: 150px;
+  height: fit-content;
+}
+.img-team {
+  display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+ }
+#hover-content {
+  visibility: hidden;
+    opacity: 0;
+    transform: translateY(20%);
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s 0.5s;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    border-radius: 5px;
+    height: inherit;
+}
+
+#parent:hover #hover-content {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: 
+      opacity 0.5s ease, 
+      transform 0.5s ease;
+      background: linear-gradient(359deg, #0F3C12, #1d5d21a8, #2e6b2f80);
+}
+.team-name{
+  width: 100%;
+   
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  background: linear-gradient(359deg, #0F3C12, #1d5d21a8, #2e6b2f80);
+}
+.team-name h6{
+  margin: 0;
+}
+.team-name{
+  width: 100%;
+  background-color: #1D5D21;
+}
+
+/* ------------------------page clubs-------------------------------------- */
+
+/* ------------------------ clubs Detail-------------------------------------- */
+.club-detail{
+  padding: 2rem;
+}
+.img_club img{
+  width: 200px;
+}
+.club-details-toppic {
+  font-size: .875rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.text-normal{
+  font-size: .875rem;  
+
+}
+.club-name{
+  padding-left: 10px;
+}
+/* ------------------------ clubs Detail-------------------------------------- */
+/* ------------------------ player Detail-------------------------------------- */
+.position-picture {
+  text-align: center;
+}
+
+.field-container {
+  position: relative;
+  display: inline-block;
+}
+
+.field-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.player {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #000;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+}
+
+/* ตำแหน่งอิงตามขนาดภาพเป๊ะ */
+.position-GK  { top: 90%; left: 50%; }
+.position-LB  { top: 75%; left: 20%; }
+.position-RB  { top: 75%; left: 80%; }
+.position-CB  { top: 75%; left: 50%; }
+.position-CDM  { top: 62%; left: 50%;  font-size: 10PX;}
+.position-CM  { top: 50%; left: 50%; }
+.position-CAM  { top: 35%; left: 50%;font-size: 10PX; }
+.position-RW  { top: 20%; left: 80%; }
+.position-LW { top: 20%; left: 20%; }
+.position-ST { top: 15%; left: 50%; } 
+/* ------------------------ player Detail-------------------------------------- */
+
+
+
+/* ------------------------margin element-------------------------------------- */
+.m-l-5 { margin-left: 5px; }
+.m-l-10 { margin-left: 10px; }
+.m-l-15 { margin-left: 15px; }
+.m-l-20 { margin-left: 20px; }
+.m-l-25 { margin-left: 25px; }
+.m-l-30 { margin-left: 30px; }
+.m-l-35 { margin-left: 35px; }
+.m-l-40 { margin-left: 40px; }
+.m-l-45 { margin-left: 45px; }
+.m-l-50 { margin-left: 50px; }
+.m-l-55 { margin-left: 55px; }
+.m-l-60 { margin-left: 60px; }
+.m-l-65 { margin-left: 65px; }
+.m-l-70 { margin-left: 70px; }
+.m-l-75 { margin-left: 75px; }
+.m-l-80 { margin-left: 80px; }
+.m-l-85 { margin-left: 85px; }
+.m-l-90 { margin-left: 90px; }
+.m-l-95 { margin-left: 95px; }
+.m-l-100 { margin-left: 100px; }
+
+
+.m-r-5 { margin-right: 5px; }
+.m-r-10 { margin-right: 10px; }
+.m-r-15 { margin-right: 15px; }
+.m-r-20 { margin-right: 20px; }
+.m-r-25 { margin-right: 25px; }
+.m-r-30 { margin-right: 30px; }
+.m-r-35 { margin-right: 35px; }
+.m-r-40 { margin-right: 40px; }
+.m-r-45 { margin-right: 45px; }
+.m-r-50 { margin-right: 50px; }
+.m-r-55 { margin-right: 55px; }
+.m-r-60 { margin-right: 60px; }
+.m-r-65 { margin-right: 65px; }
+.m-r-70 { margin-right: 70px; }
+.m-r-75 { margin-right: 75px; }
+.m-r-80 { margin-right: 80px; }
+.m-r-85 { margin-right: 85px; }
+.m-r-90 { margin-right: 90px; }
+.m-r-95 { margin-right: 95px; }
+.m-r-100 { margin-right: 100px; }
+
+.m-b-5 { margin-bottom: 5px; }
+.m-b-10 { margin-bottom: 10px; }
+.m-b-15 { margin-bottom: 15px; }
+.m-b-20 { margin-bottom: 20px; }
+.m-b-25 { margin-bottom: 25px; }
+.m-b-30 { margin-bottom: 30px; }
+.m-b-35 { margin-bottom: 35px; }
+.m-b-40 { margin-bottom: 40px; }
+.m-b-45 { margin-bottom: 45px; }
+.m-b-50 { margin-bottom: 50px; }
+.m-b-55 { margin-bottom: 55px; }
+.m-b-60 { margin-bottom: 60px; }
+.m-b-65 { margin-bottom: 65px; }
+.m-b-70 { margin-bottom: 70px; }
+.m-b-75 { margin-bottom: 75px; }
+.m-b-80 { margin-bottom: 80px; }
+.m-b-85 { margin-bottom: 85px; }
+.m-b-90 { margin-bottom: 90px; }
+.m-b-95 { margin-bottom: 95px; }
+.m-b-100 { margin-bottom: 100px; }
+
+.m-t-5 { margin-top: 5px; }
+.m-t-10 { margin-top: 10px; }
+.m-t-15 { margin-top: 15px; }
+.m-t-20 { margin-top: 20px; }
+.m-t-25 { margin-top: 25px; }
+.m-t-30 { margin-top: 30px; }
+.m-t-35 { margin-top: 35px; }
+.m-t-40 { margin-top: 40px; }
+.m-t-45 { margin-top: 45px; }
+.m-t-50 { margin-top: 50px; }
+.m-t-55 { margin-top: 55px; }
+.m-t-60 { margin-top: 60px; }
+.m-t-65 { margin-top: 65px; }
+.m-t-70 { margin-top: 70px; }
+.m-t-75 { margin-top: 75px; }
+.m-t-80 { margin-top: 80px; }
+.m-t-85 { margin-top: 85px; }
+.m-t-90 { margin-top: 90px; }
+.m-t-95 { margin-top: 95px; }
+.m-t-100 { margin-top: 100px; }
+/* ------------------------margin element-------------------------------------- */

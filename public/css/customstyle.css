@@ -1,0 +1,464 @@
+body {
+    font-family: 'Prompt', sans-serif;
+    /* font-weight: 300; */
+}
+
+/* th:first-child {
+    border-radius: 1.5rem 0 0 1.5rem;
+}
+
+th:last-child {
+    border-radius: 0 1.5rem 1.5rem 0;
+} */
+
+.header th {
+    height: 15px;
+    line-height: 15px;
+    font-weight: normal;
+}
+
+.rounded-first {
+    border-radius: 1.5rem 0 0 1.5rem !important;
+}
+
+.rounded-last {
+    border-radius: 0 1.5rem 1.5rem 0 !important;
+}
+
+::placeholder {
+    opacity: 0.4 !important;
+    /* ใส่ !important เพื่อทำให้มั่นใจว่าไม่ถูก Override */
+}
+
+th,
+td {
+    white-space: nowrap;
+    /* ป้องกันข้อความขึ้นบรรทัดใหม่ */
+    overflow: hidden;
+    /* ป้องกันการแสดงข้อความที่ยาวเกินไป */
+    word-break: break-word;
+    /* ทำการขึ้นบรรทัดใหม่เมื่อข้อความยาวเกิน */
+}
+
+
+/* for icon in textbox-------------------------- */
+.inner-addon {
+    position: relative;
+}
+
+/* style fa */
+.inner-addon .fa {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+.right-addon .fa {
+    right: 0px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+/* ---------------------------------------------------- */
+
+
+.bg-gradient-light2 {
+    background-color: #f8f9fc;
+    background-image: linear-gradient(180deg, #ffffff 20%, #ced4e8 100%);
+    background-size: cover
+}
+
+
+/* ul.timeline------------------------------------- */
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+
+ul.timeline:before {
+    content: ' ';
+    background: #4e73df;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    width: 3px;
+    height: 100%;
+    z-index: 400;
+}
+
+ul.timeline>li {
+    margin: 10px 0;
+    padding-left: 10px;
+}
+
+ul.timeline>li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #4e73df;
+    left: 1px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+
+/* end ul.timeline------------------------------------- */
+
+
+/* sticky-column----------------------------------------*/
+.sticky-column {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    box-shadow: 10px 0 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+.table-responsive thead th.sticky-column {
+    background-color: #4e73df;
+}
+
+.table-responsive tbody td.sticky-column {
+    background-color: #fff;
+}
+
+/* sticky-column----------------------------------------*/
+
+
+/* Button Attach file --------------------------------*/
+.custom-file-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+.custom-file-input {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer !important;
+}
+
+/* Button Attach file --------------------------------*/
+
+/* Switch --------------------------------*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 145px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    padding-top: 5px;
+    padding-left: 40px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked+.icon::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f00c";
+    transform: rotate(45deg);
+    padding-top: 1px;
+    padding-left: 5px;
+    color: #34A756;
+}
+
+input+.icon::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f00d";
+    padding-left: 7.5px;
+    color: #f37d7d;
+}
+
+input:checked+.slider.icon {
+    background-color: #34A756;
+    padding-top: 5px;
+    padding-left: 17px;
+    color: white;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(110px);
+    -ms-transform: translateX(110px);
+    transform: translateX(110px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Switch --------------------------------*/
+
+/* upload file --------------------------------*/
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+#fileBG>div>label:hover {
+    cursor: pointer;
+}
+
+/* upload file --------------------------------*/
+
+/* Alert popup ---------------------------------------*/
+.create-popup .swal-header {
+    background-color: #34A756 !important;
+}
+.create-popup .swal-title-text {
+    color: #34A756 !important;
+    font-size: 22px !important;
+    font-weight: 500 !important;
+}
+.create-popup .swal-icon {
+    border-color: #34A756 !important;
+    color: #34A756 !important;
+    width: 4em !important;
+    height: 4em !important;
+}
+.create-popup .swal-confirm-button {
+    background-color: #34A756 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #34A756 !important;
+    border-radius: 40px !important;
+    order: 2 !important;
+    margin-top: 15px !important;
+}
+.create-popup .swal-cancel-button {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+    border-radius: 40px !important;
+    order: 1 !important;
+    margin-top: 15px !important;
+}
+.create-popup .swal2-actions {
+    width: 90% !important;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #E0E0E0 !important;
+}
+.create-popup  {
+    border-top: 10px solid #34A756 !important;
+}
+.update-popup .swal-header {
+    background-color: #FF4D00 !important;
+}
+.update-popup .swal-title-text {
+    color: #FF4D00 !important;
+    font-size: 22px !important;
+    font-weight: 500 !important;
+}
+.update-popup .swal-icon {
+    border-color: #FF4D00 !important;
+    color: #FF4D00 !important;
+    width: 4em !important;
+    height: 4em !important;
+}
+.update-popup .swal-confirm-button {
+    background-color: #FF4D00 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #FF4D00 !important;
+    border-radius: 40px !important;
+    order: 2 !important;
+    margin-top: 15px !important;
+}
+.update-popup .swal-cancel-button {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+    border-radius: 40px !important;
+    order: 1 !important;
+    margin-top: 15px !important;
+}
+.update-popup .swal2-actions {
+    width: 90% !important;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #E0E0E0 !important;
+}
+.update-popup  {
+    border-top: 10px solid #FF4D00 !important;
+}
+.delete-popup .swal-header {
+    background-color: #D32F2F !important;
+}
+.delete-popup .swal-title-text {
+    color: #D32F2F !important;
+    font-size: 22px !important;
+    font-weight: 500 !important;
+}
+.delete-popup .swal-icon {
+    border-color: #D32F2F !important;
+    color: #D32F2F !important;
+    width: 4em !important;
+    height: 4em !important;
+}
+.delete-popup .swal-confirm-button {
+    background-color: #D32F2F !important;
+    color: #FFFFFF !important;
+    border: 1px solid #D32F2F !important;
+    border-radius: 40px !important;
+    order: 2 !important;
+    margin-top: 15px !important;
+}
+.delete-popup .swal-cancel-button {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+    border-radius: 40px !important;
+    order: 1 !important;
+    margin-top: 15px !important;
+}
+.delete-popup .swal2-actions {
+    width: 90% !important;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #E0E0E0 !important;
+}
+.delete-popup {
+    border-top: 10px solid #D32F2F !important;
+}
+.success-popup .swal-title-text {
+    font-size: 22px !important;
+    font-weight: 500 !important;
+}
+.success-popup .swal-icon {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+/* Alert popup ---------------------------------------*/
+
+/* Step ---------------------------------------*/
+.steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    position: relative;
+    width: 100%;
+}
+.steps > * {
+    flex: 1;
+    text-align: center; /* เพิ่มเติมหากต้องการให้ข้อความอยู่กลาง */
+}
+.step-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: #EEEEEE;
+    transition: .4s;
+    color: #ffffff;
+    font-weight: 500;
+}
+.step-button[aria-expanded="true"] {
+    width: 50px;
+    height: 50px;
+    background-color: #FFFFFF;
+    color: #4373C5;
+    border: 1.9px solid #4373C5;
+}
+.done {
+    background-color: #FFFFFF;
+    color: #4373C5;
+    border: 1.9px solid #4373C5;
+}
+.step-item {
+    z-index: 10;
+    text-align: center;
+}
+.step-title{
+    font-size: x-small;
+    font-weight: 500;
+}
+#progress {
+    -webkit-appearance:none;
+    position: absolute;
+    width: 90%;
+    min-width: 125px;
+    z-index: 5;
+    height: 5px;
+    margin-left: 5%;
+    margin-bottom: 18px;
+    margin-top: 24px;
+}
+/* to customize progress bar */
+#progress::-webkit-progress-value {
+    background-color: #4373C5;
+    transition: .5s ease;
+}
+#progress::-webkit-progress-bar {
+    background-color: #EEEEEE;
+
+}
+/* Step ---------------------------------------*/
+
+/* History ---------------------------------------*/
+.timeline {
+    border-left: 3px solid #4373C5;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: row;
+}
+.timeline-item .left-column {
+    flex: 0.1;
+}
+.timeline-item .middle-column {
+    flex: 1.9;
+}
+.timeline-item .right-column {
+    flex: 1;
+}
+/* History ---------------------------------------*/
+.scrollable-dropdown {
+    max-height: 200px; /* Adjust as needed */
+    overflow-y: auto;
+  }

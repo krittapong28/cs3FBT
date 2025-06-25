@@ -1,0 +1,260 @@
+    //For modal compare
+    var labelTitleModalSaveCompare = resourceManager.GetString("LabelTitleModalSaveCompare");
+    var labelCancel = await helper.GetBilingualLable("LabelCancel", lang);
+    var labelSave = await helper.GetBilingualLable("LabelSave", lang);
+    var requiredFirstName = resourceManager.GetString("RequiredFirstName");
+    var requiredQuotation_ID = resourceManager.GetString("RequiredQuotation_ID");
+
+-----------------------------------------------
+//ถ้าเคยแคลแล้ว
+
+//ถ้าเคยเก็บผล Compare
+var jsonstr = localStorage.getItem("lastProduct");
+if (!!jsonstr) {
+    debugger
+    var calresult = JSON.parse(jsonstr);
+    if (calresult.ProductCode == productCode) {
+        await renderCalculateResult(calresult);
+    }
+}
+
+-----------------------------------------------
+
+async function OnBtnSubmitClick()
+ //ลบ Compare ก่อนส่งไป Submit
+ var jsonstr = localStorage.getItem("lastProduct");
+ if (!!jsonstr) {
+     var _calresult = JSON.parse(jsonstr);
+     if (_calresult.ProductCode == productCode) {
+         await removeLastCalculate("lastProduct")
+     }
+ }
+
+
+
+-----------------------------------------------
+
+
+<a class="btn btn-cal btn-info radious-2" onclick="OpenModalSaveCompare()">Compare</a>
+
+-----------------------------------------------
+</script>
+
+//Compare
+async function OpenModalSaveCompare() {
+
+    await InitialCalculate();
+
+    //If no error element
+    if ($(".field-validation-valid:not(:empty)").length == 0) {
+        $('#modalSaveCompare').modal('show');
+    }
+
+}
+
+
+function SubmitCalculateToGetRefCode() {
+    return new Promise(function (resolve, reject) {
+
+        //Form data - Start submit
+        var listValue = $('form').serializeArray();
+        var submitdata = {};
+        submitdata['ProductCode'] = '@Html.Raw(Model.ProductCode)'
+        listValue.forEach(function (item, index) {
+            //submitdata[item.name] = ConvertToNumber(item.value);
+
+            //var numericValue = parseFloat(item.value);
+            var cleanedValue = item.value.replace(/,/g, ''); // Remove commas
+            var numericValue = parseFloat(cleanedValue);
+
+
+            // Check if the conversion to a number was successful
+            if (!isNaN(numericValue)) {
+                submitdata[item.name] = ConvertToNumber(item.value);
+            } else {
+                submitdata[item.name] = item.value; // If not a number, keep the original value
+            }
+        });
+
+        if (!!submitdata.InsuranceTypeCode) {
+            submitdata['CC_Type'] = submitdata.InsuranceTypeCode;
+        }
+
+        if (!!submitdata.CC_Type) {
+            submitdata['InsuranceTypeCode'] = submitdata.CC_Type;
+        }
+
+        submitdata['ReferenceKey'] = $('#ReferenceKey').val();
+        if (!$('#ReferenceKey').val() || $('#ReferenceKey').val() == 0) {
+            submitdata['ReferenceKey'] = "";
+        }
+        submitdata['ContractHandingFee'] = isNaN(Number($('#ContractHandingFee').text())) ? 800 : Number($('#ContractHandingFee').text());
+        if ($("#AO_CODE").val()) {
+            submitdata['AO_CODE'] = $("#AO_CODE").val().toString();
+        }
+        else {
+            submitdata['AO_CODE'] = null;
+        }
+
+        //ajax call
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Calculate", "InstallmentCalculate")',
+            data: JSON.stringify(submitdata),
+            contentType: 'application/json',
+            success: async function (result) {
+
+                if (result.success) {
+                    var renderData = {};
+                    Object.keys(result.data).forEach(function (key) {
+                        var value = result.data[key];
+                        if (key.lastIndexOf('hp') == 0 || key.lastIndexOf('hP') == 0 || key.lastIndexOf('rv') == 0 || key.lastIndexOf('rV') == 0) {
+                            renderData[key.charAt(0).toUpperCase() + key.charAt(1).toUpperCase() + key.slice(2)] = value;
+                        } else {
+                            renderData[key.charAt(0).toUpperCase() + key.slice(1)] = value;
+                        }
+                    });
+                    console.log(renderData)
+
+                    await renderCalculateResult(renderData);
+                    await CheckEffectiveRate(false);
+                    SwalLoaderClose();
+
+                    //Return ข้อมูลออกไป
+                    resolve(renderData);
+
+                } else {
+                    var errobj = JSON.parse(result.message);
+                    var lang = '@Html.Raw(lang)';
+                    var errmsg = lang == "TH" ? "code:" + errobj.code + " " + errobj.errors.errorMessageTH : "code:" + errobj.code + " " + errobj.errors.errorMessageEN;
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '@Html.Raw(TitleModal)',
+                        text: errmsg,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    });
+
+                    reject(errmsg)
+                }
+
+                //SwalLoaderClose();
+            },
+            error: function (error) {
+                console.log(error);
+                reject(error)
+            }
+        });
+
+
+        //End submit
+    });
+
+}
+
+async function SubmitCompareSave() {
+    debugger
+    // Get the values from the input fields using jQuery
+    var compareNameValue = $("#CompareName").val();
+    var compareQuotationValue = $("#CompareQuotation_ID").val();
+
+    // Do something with the values, for example, log them to the console
+    console.log("Compare Name: ", compareNameValue);
+    console.log("Compare Quotation ID: ", compareQuotationValue);
+
+    if (!compareNameValue) {
+        $('#err-CompareName').text('@Html.Raw(requiredFirstName)')
+    } else {
+        $('#err-CompareName').text('')
+    }
+
+    if (!compareQuotationValue) {
+        $('#err-CompareQuotation_ID').text('@Html.Raw(requiredQuotation_ID)')
+    } else {
+        $('#err-CompareQuotation_ID').text('')
+    }
+
+    if (!!compareNameValue && !!compareQuotationValue) {
+
+        var listValue = $('form').serializeArray();
+        var calcresult = {};
+        calcresult['ProductCode'] = '@Html.Raw(Model.ProductCode)';
+        listValue.forEach(function (item, index) {
+            calcresult[item.name] = ConvertToNumber(item.value);
+        });
+
+        if (!!calcresult.InsuranceTypeCode) {
+            calcresult['CC_Type'] = submitdata.InsuranceTypeCode;
+        }
+
+        if (!!calcresult.CC_Type) {
+            calcresult['InsuranceTypeCode'] = submitdata.CC_Type;
+        }
+
+        calcresult['ReferenceKey'] = $('#ReferenceKey').val();
+        if (!$('#ReferenceKey').val() || $('#ReferenceKey').val() == 0) {
+            calcresult['ReferenceKey'] = "";
+        }
+        calcresult['ContractHandingFee'] = isNaN(Number($('#ContractHandingFee').text())) ? 800 : Number($('#ContractHandingFee').text());
+        if ($("#AO_CODE").val()) {
+            calcresult['AO_CODE'] = $("#AO_CODE").val().toString();
+        } else {
+            calcresult['AO_CODE'] = null;
+        }
+
+
+        const serve_calcresult = await SubmitCalculateToGetRefCode();
+        console.log('Async function completed with result:', calcresult);
+
+        Object.keys(serve_calcresult).forEach(function (key) {
+            var value = serve_calcresult[key];
+            calcresult[key] = value;
+        });
+
+        
+        //Submit data
+        var submitData = {}
+        submitData['RefCode'] = calcresult.ReferenceKey;
+        submitData['CompareName'] = compareNameValue;
+        submitData['QuotationId'] = compareQuotationValue;
+        submitData['CreateBy'] = ""
+        console.log('SubmitProductCompare with parameters :' + JSON.stringify(submitData))
+
+
+        //เก็บผลลัพธ์ล่าสุดที่คำนวณ
+        console.log('Store latest calc result for compare :' + JSON.stringify(submitData))
+        localStorage.setItem("lastProduct", JSON.stringify(calcresult))
+
+        //ajax ส่งไป save compare
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SubmitProductCompare", "ProductCompare")',
+            data: JSON.stringify(submitData),
+            contentType: 'application/json',
+            success: function (result) {
+                debugger
+                if (result.success) {
+                    href = "@Url.Action("Index", "ProductCompare")"
+                    window.location.href = href;
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '<span class="custom-title">' + $("#LabelTitleModalerror").val() + '</span>',
+                        text: result.message,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'ตกลง',
+                        confirmButtonColor: '#D53232',
+                        showCloseButton: true,
+                        customClass: {
+                            confirmButton: 'swal2-confirm'
+                        }
+                    });
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+}
